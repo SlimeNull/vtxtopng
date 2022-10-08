@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vtxtopng", "vtxtopng\vtxtopng.csproj", "{BAF60379-8BAE-4B48-BD58-A0846805AA5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vtxtopng_nf", "vtxtopng_nf\vtxtopng_nf.csproj", "{0E154A2C-45A0-4DD8-A502-D99B5530B667}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAF60379-8BAE-4B48-BD58-A0846805AA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF60379-8BAE-4B48-BD58-A0846805AA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF60379-8BAE-4B48-BD58-A0846805AA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF60379-8BAE-4B48-BD58-A0846805AA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E154A2C-45A0-4DD8-A502-D99B5530B667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E154A2C-45A0-4DD8-A502-D99B5530B667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E154A2C-45A0-4DD8-A502-D99B5530B667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E154A2C-45A0-4DD8-A502-D99B5530B667}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11240EAE-CB27-4842-AB1B-5AC1C723F4AF}
+	EndGlobalSection
+EndGlobal

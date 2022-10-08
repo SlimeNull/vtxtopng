@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "vtxtopng": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\slime\\Documents\\Tencent Files\\2056818509\\FileRecv\\smoke_wisp.png\" \"C:\\Users\\slime\\Documents\\Tencent Files\\2056818509\\FileRecv\\新建文本文档.txt\""
+    }
+  }
+}
