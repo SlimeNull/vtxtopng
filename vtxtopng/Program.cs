@@ -1,7 +1,11 @@
 ﻿using CommandLine;
 using CommandLine.Text;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Drawing;
+using System;
 
+#nullable enable
 internal class Program
 {
     internal class Options
@@ -21,7 +25,13 @@ internal class Program
         });
 
         ParserResult<Options> result = parser.ParseArguments<Options>(args);
+        result
+            .WithParsed(Run)
+            .WithNotParsed(errs => DisplayHelp(result));
+    }
 
+    private static void DisplayHelp<T>(ParserResult<T> result)
+    {
         HelpText help = HelpText.AutoBuild(result, (h) =>
         {
             h.Copyright = "Copyright (C) 2022 SlimeNull";
@@ -29,14 +39,12 @@ internal class Program
             return h;
         });
 
-        result
-            .WithParsed(Run)
-            .WithNotParsed(errs => Console.WriteLine(help));
+        Console.WriteLine(help);
     }
 
     private static void Run(Options options)
     {
-        Regex reg = new Regex(@"(\s*\[\d+\.\d+\.0\]\s*uvCropped\s*=\s*\{\s*\(\s*(?<left1>-?\d+\.?-?\d*),\s*(?<top1>-?\d+\.?-?\d*)\s*\),\s*\(\s*(?<right1>-?\d+\.?-?\d*),\s*(?<bottom1>-?\d+\.?-?\d*)\s*\)\s*\})(.*\n)*?.*(\s*\[\d+\.\d+\.0\]\s*uvUncropped\s*=\s*\{\s*\(\s*(?<left2>-?\d+\.?-?\d*),\s*(?<top2>-?\d+\.?-?\d*)\s*\),\s*\(\s*(?<right2>-?\d+\.?-?\d*),\s*(?<bottom2>-?\d+\.?-?\d*)\s*\)\s*\})");
+        Regex reg = new Regex(@"(\s*\[\d+\.\d+\.\d+\]\s*uvCropped\s*=\s*\{\s*\(\s*(?<left1>-?\d+\.?-?\d*),\s*(?<top1>-?\d+\.?-?\d*)\s*\),\s*\(\s*(?<right1>-?\d+\.?-?\d*),\s*(?<bottom1>-?\d+\.?-?\d*)\s*\)\s*\})(.*\n)*?.*(\s*\[\d+\.\d+\.\d+\]\s*uvUncropped\s*=\s*\{\s*\(\s*(?<left2>-?\d+\.?-?\d*),\s*(?<top2>-?\d+\.?-?\d*)\s*\),\s*\(\s*(?<right2>-?\d+\.?-?\d*),\s*(?<bottom2>-?\d+\.?-?\d*)\s*\)\s*\})");
 
         Image origin = Image.FromFile(options.ImagePath!);
         string data = File.ReadAllText(options.DataPath!);
@@ -77,7 +85,9 @@ internal class Program
                 (int)spriteSize.Width,
                 (int)spriteSize.Height);
             using Graphics g = Graphics.FromImage(sprite);
-            g.DrawImage(origin, new RectangleF(spriteDestPos, spriteDrawSize), new RectangleF(spriteSrcPos, spriteDrawSize), GraphicsUnit.Pixel);
+            RectangleF destRect = new RectangleF(spriteDestPos, spriteDrawSize);
+            RectangleF srcRect = new RectangleF(spriteSrcPos, spriteDrawSize);
+            g.DrawImage(origin, Rectangle.Truncate(destRect), Rectangle.Truncate(srcRect), GraphicsUnit.Pixel);
 
             sprite.SetResolution(origin.HorizontalResolution, origin.VerticalResolution);
             sprite.Save(outputName);
